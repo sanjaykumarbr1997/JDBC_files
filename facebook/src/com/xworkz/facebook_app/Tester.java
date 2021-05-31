@@ -31,10 +31,13 @@ public class Tester {
         System.out.println(fbDTO);
 
         FacebookDAO bookDAO = new FacebookDAOImpl();
+       
         bookDAO.createFaceBook(fbDTO);
         bookDAO.getAllFaceBookDetails();
 
         List<FacebookDTO> bookDTOs= bookDAO.getAllFaceBookDetails();
+        
+        System.out.println("--------");
 
         for(FacebookDTO facebookDTO :bookDTOs){
             if(facebookDTO!=null) {
