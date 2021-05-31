@@ -17,7 +17,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "pasword");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passsword");
             statement = connection.createStatement();
             statement.execute("insert into facebook_table values(" + bookDTO.getId() + ",'" + bookDTO.getName() + "','" + bookDTO.getEmail() + "','" + bookDTO.getPassword() + "')");
 
