@@ -52,7 +52,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "pasword");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "password");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select*from facebook_table");
 
