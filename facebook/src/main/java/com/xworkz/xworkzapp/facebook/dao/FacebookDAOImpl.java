@@ -19,7 +19,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passeror");
             statement = connection.createStatement();
             statement.execute("insert into facebook_table values(" + bookDTO.getId() + ",'" + bookDTO.getName() + "','" + bookDTO.getEmail() + "','" + bookDTO.getPassword() + "')");
 
@@ -54,7 +54,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passeord");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select*from facebook_table");
 
