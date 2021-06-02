@@ -68,8 +68,6 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
                 bookDTOs.add(bookDTO);
                 System.out.println(bookDTOs);
-
-
             }
 
         } catch (ClassNotFoundException | SQLException e) {
@@ -89,7 +87,6 @@ public class FacebookDAOImpl implements  FacebookDAO {
                     e.printStackTrace();
                 }
             }
-
 
         }
         return bookDTOs;
