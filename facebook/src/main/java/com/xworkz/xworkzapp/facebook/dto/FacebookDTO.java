@@ -1,10 +1,14 @@
-package com.xworkz.facebook_app.dto;
+package com.xworkz.xworkzapp.facebook.dto;
 
 public class FacebookDTO {
     private int id;
     private String name;
     private String email;
     private String password;
+    
+    public FacebookDTO() {
+    	System.out.println(this.getClass().getSimpleName()+" is created");
+	}
 
     @Override
     public String toString() {

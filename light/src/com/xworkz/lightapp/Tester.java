@@ -12,6 +12,8 @@ public class Tester {
             iSwitch.sOn();
             iSwitch.sOff();
         }
+        
+        sc.close();
     }
 
 }

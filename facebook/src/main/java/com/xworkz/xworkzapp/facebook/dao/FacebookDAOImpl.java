@@ -1,10 +1,12 @@
-package com.xworkz.facebook_app.dao;
+package com.xworkz.xworkzapp.facebook.dao;
 
-import com.xworkz.facebook_app.dto.FacebookDTO;
 import java.sql.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.xworkz.xworkzapp.facebook.dto.FacebookDTO;
+
 import java.sql.ResultSet;
 
 
@@ -17,7 +19,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passsword");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
             statement = connection.createStatement();
             statement.execute("insert into facebook_table values(" + bookDTO.getId() + ",'" + bookDTO.getName() + "','" + bookDTO.getEmail() + "','" + bookDTO.getPassword() + "')");
 
@@ -48,24 +50,24 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         Connection connection = null;
         Statement statement = null;
-        List<FacebookDTO> bookDTOs = new ArrayList<FacebookDTO>();
+        List<FacebookDTO> bookDTOs = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select*from facebook_table");
 
             while (resultSet.next()) {
 
                 FacebookDTO bookDTO = new FacebookDTO();
-
                 bookDTO.setId(resultSet.getInt("facebook_id"));
                 bookDTO.setName(resultSet.getString("facebook_name"));
                 bookDTO.setEmail(resultSet.getString("facebook_email"));
                 bookDTO.setPassword(resultSet.getString("facebook_password"));
 
                 bookDTOs.add(bookDTO);
+                System.out.println(bookDTOs);
 
 
             }

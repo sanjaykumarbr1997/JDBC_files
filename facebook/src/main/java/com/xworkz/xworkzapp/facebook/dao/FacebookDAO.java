@@ -1,8 +1,9 @@
-package com.xworkz.facebook_app.dao;
+package com.xworkz.xworkzapp.facebook.dao;
 
-import com.xworkz.facebook_app.dto.FacebookDTO;
 
 import java.util.List;
+
+import com.xworkz.xworkzapp.facebook.dto.FacebookDTO;
 
 public interface FacebookDAO {
 
