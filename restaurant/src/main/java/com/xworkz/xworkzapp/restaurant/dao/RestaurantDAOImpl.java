@@ -20,7 +20,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn","root","dontknow");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn","root","passeord");
 			statement = connection.createStatement();
 			statement.execute("insert into customer_order_details values("+restDTO.getCustomerID()+",'" +restDTO.getCustomerName()+" ','" +restDTO.getcustomerOrderedItem()+" '," +restDTO.getCustomerRatings()+" )");
 			
@@ -61,7 +61,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn","root","dontknow");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn","root","passeord");
 			statement = connection.createStatement();
 			ResultSet resultSet =statement.executeQuery("select*from customer_order_details");
 			
