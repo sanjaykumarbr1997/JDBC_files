@@ -8,6 +8,8 @@ import java.util.Scanner;
 import com.xworkz.xworkzapp.facebook.dao.FacebookDAO;
 import com.xworkz.xworkzapp.facebook.dao.FacebookDAOImpl;
 import com.xworkz.xworkzapp.facebook.dto.FacebookDTO;
+import com.xworkz.xworkzapp.facebook.service.FacebookServiceImpl;
+import com.xworkz.xworkzapp.facebook.service.FacebookService;
 
 public class Tester {
     public static void main(String[] args) {
@@ -32,20 +34,28 @@ public class Tester {
 
         System.out.println(fbDTO);
 
-        FacebookDAO bookDAO = new FacebookDAOImpl();
+        /*FacebookDAO bookDAO = new FacebookDAOImpl();
        
-        bookDAO.createFaceBook(fbDTO);
-        bookDAO.getAllFaceBookDetails();
+        bookDAO.createFaceBook(fbDTO);  */
+        
+        
+        FacebookService bookservice = new FacebookServiceImpl();
+        bookservice.validateAndSave(fbDTO);
+        
+      /*
 
         List<FacebookDTO> bookDTOs= bookDAO.getAllFaceBookDetails();
         
         System.out.println("--------");
 
+       
         for(FacebookDTO facebookDTO :bookDTOs){
            if(facebookDTO!=null){
                 System.out.println(facebookDTO);
            }
         }
+        
+        */
 
     }
 }

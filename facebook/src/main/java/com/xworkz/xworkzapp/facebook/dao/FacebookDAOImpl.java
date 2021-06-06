@@ -16,20 +16,25 @@ public class FacebookDAOImpl implements  FacebookDAO {
     @Override
     public void createFaceBook(FacebookDTO bookDTO) {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement preparedstatement = null;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passeror");
-            statement = connection.createStatement();
-            statement.execute("insert into facebook_table values(" + bookDTO.getId() + ",'" + bookDTO.getName() + "','" + bookDTO.getEmail() + "','" + bookDTO.getPassword() + "')");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
+            preparedstatement = connection.prepareStatement("insert into facebook_table values(?,?,?,?)");
+            preparedstatement.setInt(1, bookDTO.getId());
+            preparedstatement.setString(2, bookDTO.getName());
+            preparedstatement.setString(3, bookDTO.getEmail());
+            preparedstatement.setString(4, bookDTO.getName());
+            preparedstatement.executeUpdate();
+            preparedstatement.close();
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement!= null) {
+            if (preparedstatement!= null) {
                 try {
-                    statement.close();
+                	preparedstatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -55,7 +60,7 @@ public class FacebookDAOImpl implements  FacebookDAO {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "passeord");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fbn", "root", "dontknow");
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select*from facebook_table");
 
