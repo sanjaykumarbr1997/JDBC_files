@@ -53,30 +53,49 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 	
 		
 		PlayStoreService PlayStoreService = new PlayStoreServiceImpl();
-	
+		System.out.println("Enter number of records to update");
 		
-		try {
-			PlayStoreService.validateAndUpdateRatingsByName(5, "PubG");
+		int numberOfRecordsUpdate = scanner.nextInt();
+		
+		for(int num=0;num<numberOfRecordsUpdate;num++) {
+		
+			System.out.println("Enter app name to update");
+			String name = scanner.next();
+			System.out.println("Enter new ratings");
+			int ratings = scanner.nextInt();
+		
+			try {
+			PlayStoreService.validateAndUpdateRatingsByName(ratings,name);
 			System.out.println("Ratings  updated");
 			
-		} catch (ClassNotFoundException |SQLException e) {
+			} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 			
 			}
 		
-	
+		}
+		
+		
+		System.out.println("Enter number of records to delete");
+		
+		int numberOfRecordsToDelete = scanner.nextInt();
+		
+		for(int num=0;num<numberOfRecordsToDelete;num++) {
+			
+			System.out.println("Enter name to delete records");
+			String name = scanner.next();
 
-		try {
-			PlayStoreService.deleteDetailsByName("ClashRoyale");
+			try {
+			PlayStoreService.deleteDetailsByName(name);
 			System.out.println("Details deleted");
 			
-		} catch (ClassNotFoundException |SQLException e) {
+			} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 			
 			}
 			
 			
-	
+		}
 		try {
 			PlayStoreService.validateAndFetch();
 			System.out.println("Details fethced");

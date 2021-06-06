@@ -7,7 +7,7 @@ public class FacebookDTO {
     private String password;
     
     public FacebookDTO() {
-    	System.out.println(this.getClass().getSimpleName()+" is created");
+    	//System.out.println(this.getClass().getSimpleName()+" is created");
 	}
 
     @Override

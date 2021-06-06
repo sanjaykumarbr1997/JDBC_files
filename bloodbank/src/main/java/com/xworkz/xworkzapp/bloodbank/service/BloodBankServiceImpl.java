@@ -37,7 +37,7 @@ public class BloodBankServiceImpl implements BloodBankService {
 	@Override
 	public void validateAndUpdateAgeByName(int donorAge,String donorName) throws ClassNotFoundException, SQLException {
 			if (donorAge > 18 && donorName !=null) {
-				bankDAO.deleteDetailsByName(donorName);
+				bankDAO.updateAgeByName(donorAge, donorName);
 			}
 			else {
 				System.out.println("Age below 18 cant accept blood");
@@ -45,7 +45,7 @@ public class BloodBankServiceImpl implements BloodBankService {
 	}
 
 	@Override
-	public void deleteDetailsByName(String donorName) throws ClassNotFoundException, SQLException {
+	public void validateDeleteDetailsByName(String donorName) throws ClassNotFoundException, SQLException {
 		if (donorName !=null) {
 			bankDAO.deleteDetailsByName(donorName);
 		}
@@ -61,5 +61,21 @@ public class BloodBankServiceImpl implements BloodBankService {
 		return bankDAO.getAllBloodBankDetails();
 		
 	}
+
+	@Override
+	public List<String> validateAndgetIsSmokerByName(String name) throws ClassNotFoundException, SQLException {
+		return bankDAO.getIsSmokerByName(name);
+	}
+
+	@Override
+	public List<BloodBankDTO> validateGetDetailsByLocation(String location)
+			throws ClassNotFoundException, SQLException {
+		return bankDAO.getDetailsByLocation(location);
+	}
+
+	@Override
+	public List<String> validateGetAllContactNumber() throws ClassNotFoundException, SQLException {
+		return bankDAO.getAllContactNumber();
+		}
 
 }

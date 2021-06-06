@@ -14,55 +14,105 @@ import java.util.List;
 import com.xworkz.xworkzapp.playstore.dto.PlayStoreDTO;
 
 public class PlayStoreDAOImpl implements PlayStoreDAO {
+	
+	Connection connection =null;
+	private Connection getConnection() {
+		
+		try {
+			Class.forName(DRIVER_CLASS_NAME);
+			connection = DriverManager.getConnection(URL);
+			connection.setAutoCommit(false);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return connection;
+		
+	}
+	
+	private void closeConnection() {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	@Override
-	public void create_details(PlayStoreDTO pDTO) throws ClassNotFoundException, SQLException {
+	public void create_details(PlayStoreDTO pDTO) throws ClassNotFoundException, SQLException  {
 		
-		Class.forName(DRIVER_CLASS_NAME);
-		Connection connection = DriverManager.getConnection(URL);
-		PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY);
-		preparedStatement.setInt(1,pDTO.getId());
-		preparedStatement.setString(2, pDTO.getAppName());
-		preparedStatement.setString(3, pDTO.getAppType());
-		preparedStatement.setInt(4, pDTO.getRatings());
+	
+		PreparedStatement preparedStatement1 =null;
+		try {
+			preparedStatement1 = getConnection().prepareStatement(INSERT_QUERY);
+			preparedStatement1.setInt(1,pDTO.getId());
+			preparedStatement1.setString(2, pDTO.getAppName());
+			preparedStatement1.setString(3, pDTO.getAppType());
+			preparedStatement1.setInt(4, pDTO.getRatings());
+			preparedStatement1.addBatch();
+			preparedStatement1.executeBatch();
+			connection.commit();
+			
+			
+		} catch (SQLException e) {
+			connection.rollback();
+		}
+		finally {
+			preparedStatement1.close();
+			closeConnection();
+		}
 		
-		preparedStatement.executeUpdate();
-		preparedStatement.close();
-		connection.close();
 	}
 
 	@Override
 	public void updateRatingsByName(int ratings, String appName) throws ClassNotFoundException, SQLException {
-		Class.forName(DRIVER_CLASS_NAME);
-		Connection connection = DriverManager.getConnection(URL);
-		PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_RATINGS_BY_APP_NAME);
-		preparedStatement.setInt(1,ratings);
-		preparedStatement.setString(2, appName);
-		preparedStatement.executeUpdate();
-		preparedStatement.close();
-		connection.close();
+		
+		PreparedStatement preparedStatement2=null;
+	try {
+		preparedStatement2 = getConnection().prepareStatement(UPDATE_RATINGS_BY_APP_NAME);
+		preparedStatement2.setInt(1,ratings);
+		preparedStatement2.setString(2, appName);
+		preparedStatement2.addBatch();
+		preparedStatement2.executeBatch();
+		connection.commit();
+		
+	} catch (SQLException e) {
+		connection.rollback();
+	}
+	finally {
+		preparedStatement2.close();
+		closeConnection();
+	}
+	
 	}
 
 	@Override
 	public void deleteDetailsByName(String appName) throws ClassNotFoundException, SQLException {
+		PreparedStatement preparedStatement3 =null;
+	try {
+		 preparedStatement3= getConnection().prepareStatement(DELETE_QUERY);
+		preparedStatement3.setString(1, appName);
+		preparedStatement3.addBatch();
+		preparedStatement3.executeBatch();
+		connection.commit();
 		
-		Class.forName(DRIVER_CLASS_NAME);
-		Connection connection = DriverManager.getConnection(URL);
-		PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY);
-		preparedStatement.setString(1, appName);
-		preparedStatement.executeUpdate();
-		preparedStatement.close();
-		connection.close();
+	} catch (SQLException e) {
+		connection.rollback();
+	}
+	finally {
+		preparedStatement3.close();
+		closeConnection();
+	}
 		
 	}
 
 	@Override
 	public List<PlayStoreDTO> getAllBloodBankDetails() throws ClassNotFoundException, SQLException {
 		
-		Class.forName(DRIVER_CLASS_NAME);
+		Statement statement=null;
 		
-		Connection connection = DriverManager.getConnection(URL);
-		Statement statement = connection.createStatement();
+		statement = getConnection().createStatement();
 		ResultSet resultSet=statement.executeQuery(SELECT_QUERY);
 		List<PlayStoreDTO> playDTOs = new ArrayList<>();
 		
@@ -74,17 +124,13 @@ public class PlayStoreDAOImpl implements PlayStoreDAO {
             playDTO.setAppType(resultSet.getString("app_type"));
             playDTO.setRatings(resultSet.getInt("app_ratings"));
             
-            
-           playDTOs.add(playDTO);
+            playDTOs.add(playDTO);
 		}
-		
-		
 		statement.close();
-		connection.close();
+		closeConnection();
 		
 		return playDTOs;
         
-	
 	}
 
 }
