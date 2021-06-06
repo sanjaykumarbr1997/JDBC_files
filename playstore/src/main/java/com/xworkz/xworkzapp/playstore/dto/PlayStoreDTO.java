@@ -12,8 +12,6 @@ public class PlayStoreDTO {
 		
 	}
 	
-
-
 	@Override
 	public String toString() {
 		return "PlayStoreDTO [id=" + id + ", appName=" + appName + ", appType=" + appType + ", ratings=" + ratings
