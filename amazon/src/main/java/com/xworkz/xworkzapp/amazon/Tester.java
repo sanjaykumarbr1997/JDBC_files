@@ -115,7 +115,50 @@ public class Tester {
                 System.out.println(amazonsDTO);
            }
         }
+        
+        try {
+			amazonService.validateGetAllOrderDetails();
+			System.out.println("Details In increasing item_price fethced");	
+			
+		} catch (ClassNotFoundException |SQLException e) {
+			e.printStackTrace();
+			
+			}
 		
+		AmazonService amIncrease = new AmazonServiceImpl();
+		
+		List<AmazonDTO> amazonDTOIncreas=  amIncrease.validateGetOrderDetailsInAscendingOrder();
+         
+        for(AmazonDTO amazonsDTO :amazonDTOIncreas){
+           if(amazonsDTO!=null){
+                System.out.println(amazonsDTO);
+           }
+        }
+       
+        try {
+			amazonService.validateGetMaxPriceOrderItem();
+			System.out.println("Details In increasing item_price fethced");	
+			
+		} catch (ClassNotFoundException |SQLException e) {
+			e.printStackTrace();
+			
+			}
+		
+		AmazonService amMaxs = new AmazonServiceImpl();
+		
+		List<Float> amazonDTOMax=   amMaxs.validateGetMaxPriceOrderItem();
+         
+        for(Float amazonsDTO :amazonDTOMax){
+           if(amazonsDTO!=null){
+                System.out.println(amazonsDTO);
+           }
+        }
+	
+        
+        
+        
+        scanner.close();  
+        
 	}
 
 }

@@ -131,4 +131,46 @@ Connection connection = null;
 
 	}
 
+	@Override
+	public List<AmazonDTO> getOrderDetailsInAscendingOrder() throws ClassNotFoundException, SQLException {
+	
+		Statement statement = getConnection().createStatement();
+		ResultSet resultSet=statement.executeQuery(SELECT_QUERY_IN_INCREASED_ITEM_PRICE);
+		List<AmazonDTO> amazonDTOs = new ArrayList<>();
+		
+		while (resultSet.next()) {
+
+            AmazonDTO bankDTO = new AmazonDTO();
+            bankDTO.setId(resultSet.getInt("id"));
+            bankDTO.setName(resultSet.getString("name"));
+            bankDTO.setOrderedItem(resultSet.getString("ordered_item"));
+            bankDTO.setItemPrice(resultSet.getFloat("item_price"));
+            bankDTO.setContactNo(resultSet.getLong("contact_number"));
+            bankDTO.setDeliverStatus(resultSet.getBoolean("delivery_status"));
+            amazonDTOs.add(bankDTO);
+		}
+		
+		statement.close();
+		closeConnection();
+		return amazonDTOs;	  
+	}
+
+	@Override
+	public List<Float> getMaxPriceOrderItem() throws ClassNotFoundException, SQLException {
+		Statement statement = getConnection().createStatement();
+		ResultSet resultSet=statement.executeQuery(SELECT_QUERY_MAX);
+		List<Float> amazonDTOs = new ArrayList<>();
+		
+		while (resultSet.next()) {
+
+            Float value;
+            value=resultSet.getFloat("item_price");
+            amazonDTOs.add(value);
+		}
+		
+		statement.close();
+		closeConnection();
+		return amazonDTOs;	
+	}
+
 }

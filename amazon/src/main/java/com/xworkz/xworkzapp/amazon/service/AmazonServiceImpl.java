@@ -58,4 +58,18 @@ public class AmazonServiceImpl implements AmazonService{
 		return amazonDAO.getAllOrderDetails();
 	}
 
+
+	@Override
+	public List<AmazonDTO> validateGetOrderDetailsInAscendingOrder() throws ClassNotFoundException, SQLException {
+		
+		return amazonDAO.getOrderDetailsInAscendingOrder();
+	}
+
+
+	@Override
+	public List<Float> validateGetMaxPriceOrderItem() throws ClassNotFoundException, SQLException {
+		
+		return amazonDAO.getMaxPriceOrderItem();
+	}
+
 }

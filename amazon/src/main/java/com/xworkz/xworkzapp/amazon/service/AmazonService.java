@@ -11,6 +11,7 @@ public interface AmazonService {
 	public void validateUpdateDeliveryStatusByName(Boolean status,String Name) throws ClassNotFoundException ,SQLException;
 	public void validateDeleteDetailsByName(String Name) throws ClassNotFoundException ,SQLException;
 	public List<AmazonDTO> validateGetAllOrderDetails() throws ClassNotFoundException,SQLException;
-
+	public List<AmazonDTO> validateGetOrderDetailsInAscendingOrder() throws ClassNotFoundException,SQLException; 
+	public List<Float> validateGetMaxPriceOrderItem() throws ClassNotFoundException,SQLException;
 
 }

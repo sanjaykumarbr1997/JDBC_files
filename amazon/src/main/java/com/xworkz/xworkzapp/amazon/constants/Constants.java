@@ -8,6 +8,7 @@ public class Constants {
 	public static final String UPDATE_DELIVERY_STATUS_BY_NAME = "update amazon_order set delivery_status = ? where name= ?";
 	public static final String DELETE_QUERY = "delete from amazon_order where name = ?";
 	public static final String SELECT_QUERY = "select * from amazon_order";
-	
+	public static final String SELECT_QUERY_IN_INCREASED_ITEM_PRICE = "SELECT *FROM amazon_order order by item_price;";
+	public static final String SELECT_QUERY_MAX ="SELECT MAX(ITEM_PRICE) FROM amazon_order;";
 
 }

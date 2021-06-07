@@ -12,5 +12,6 @@ public interface AmazonDAO {
 	public void updateDeliveryStatusByName(Boolean status,String Name) throws ClassNotFoundException ,SQLException;
 	public void deleteDetailsByName(String Name) throws ClassNotFoundException ,SQLException;
 	public List<AmazonDTO> getAllOrderDetails() throws ClassNotFoundException,SQLException;
-
+	public List<AmazonDTO> getOrderDetailsInAscendingOrder() throws ClassNotFoundException,SQLException; 
+	public List<Float> getMaxPriceOrderItem() throws ClassNotFoundException,SQLException;
 }
