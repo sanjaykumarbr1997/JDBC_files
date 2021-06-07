@@ -13,5 +13,5 @@ public interface AmazonService {
 	public List<AmazonDTO> validateGetAllOrderDetails() throws ClassNotFoundException,SQLException;
 	public List<AmazonDTO> validateGetOrderDetailsInAscendingOrder() throws ClassNotFoundException,SQLException; 
 	public List<Float> validateGetMaxPriceOrderItem() throws ClassNotFoundException,SQLException;
-
+	public List<Float> validateGetAveragePriceOrderItem() throws ClassNotFoundException,SQLException;
 }

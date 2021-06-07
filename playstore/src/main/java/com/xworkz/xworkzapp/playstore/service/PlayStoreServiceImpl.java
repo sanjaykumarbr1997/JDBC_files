@@ -64,4 +64,19 @@ private PlayStoreDAO playDAO;
 		return playDAO.getAllBloodBankDetails();
 	}
 
+	@Override
+	public List<Integer> validateGetMaxRatings() throws ClassNotFoundException, SQLException {
+		return playDAO.getMaxRatings();
+	}
+
+	@Override
+	public List<PlayStoreDTO> validateGetAppsByRatings(int rating) throws ClassNotFoundException, SQLException {
+		return playDAO.getAppsByRatings(rating);
+	}
+
+	@Override
+	public List<PlayStoreDTO> validateGetAppsByType(String type) throws ClassNotFoundException, SQLException {
+		return playDAO.getAppsByType(type);
+	}
+
 }

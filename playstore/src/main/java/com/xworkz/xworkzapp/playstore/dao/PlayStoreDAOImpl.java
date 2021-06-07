@@ -133,4 +133,75 @@ public class PlayStoreDAOImpl implements PlayStoreDAO {
         
 	}
 
+	@Override
+	public List<Integer> getMaxRatings() throws ClassNotFoundException, SQLException {
+
+		Statement statement=null;
+		
+		statement = getConnection().createStatement();
+		ResultSet resultSet=statement.executeQuery(SELECT_MAX_RATING);
+		List<Integer> maxint = new ArrayList<>();
+		
+		while (resultSet.next()) {
+			Integer max ;
+             max = resultSet.getInt(1);
+            
+             maxint.add(max);
+		}
+		statement.close();
+		closeConnection();
+		
+		return maxint;
+	}
+
+	@Override
+	public List<PlayStoreDTO> getAppsByRatings(int rating) throws ClassNotFoundException, SQLException {
+		PreparedStatement preparedStatement3 =null;
+		
+			 preparedStatement3= getConnection().prepareStatement(SELECT_APP_BY_RATINGS);
+			 preparedStatement3.setInt(1,rating);
+			 ResultSet resultSet=preparedStatement3.executeQuery();
+			 List<PlayStoreDTO> playDTOs = new ArrayList<>();
+		
+		while (resultSet.next()) {
+
+            PlayStoreDTO playDTO = new PlayStoreDTO();
+            playDTO.setId(resultSet.getInt("id"));
+            playDTO.setAppName(resultSet.getString("app_name"));
+            playDTO.setAppType(resultSet.getString("app_type"));
+            playDTO.setRatings(resultSet.getInt("app_ratings"));
+            
+            playDTOs.add(playDTO);
+		}
+		preparedStatement3.close();
+		closeConnection();
+		
+		return playDTOs;
+	}
+
+	@Override
+	public List<PlayStoreDTO> getAppsByType(String type) throws ClassNotFoundException, SQLException {
+		PreparedStatement preparedStatement3 =null;
+		
+		 preparedStatement3= getConnection().prepareStatement(SELECT_APP_BY_TYPE);
+		 preparedStatement3.setString(1,type);
+		 ResultSet resultSet=preparedStatement3.executeQuery();
+		 List<PlayStoreDTO> playDTOs = new ArrayList<>();
+	
+	while (resultSet.next()) {
+
+       PlayStoreDTO playDTO = new PlayStoreDTO();
+       playDTO.setId(resultSet.getInt("id"));
+       playDTO.setAppName(resultSet.getString("app_name"));
+       playDTO.setAppType(resultSet.getString("app_type"));
+       playDTO.setRatings(resultSet.getInt("app_ratings"));
+       
+       playDTOs.add(playDTO);
+	}
+	preparedStatement3.close();
+	closeConnection();
+	
+	return playDTOs;
+	}
+
 }

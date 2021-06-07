@@ -11,7 +11,9 @@ public interface PlayStoreDAO {
 	public void updateRatingsByName(int ratings,String appName) throws ClassNotFoundException ,SQLException;
 	public void deleteDetailsByName(String appName) throws ClassNotFoundException ,SQLException;
 	public List<PlayStoreDTO> getAllBloodBankDetails() throws ClassNotFoundException,SQLException;
-	
+	public List<Integer> getMaxRatings() throws ClassNotFoundException,SQLException;
+	public List<PlayStoreDTO> getAppsByRatings(int rating) throws ClassNotFoundException,SQLException;
+	public List<PlayStoreDTO> getAppsByType(String type) throws ClassNotFoundException,SQLException;
 	
 	
 

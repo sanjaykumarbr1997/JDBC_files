@@ -117,7 +117,7 @@ public class Tester {
         }
         
         try {
-			amazonService.validateGetAllOrderDetails();
+			amazonService.validateGetOrderDetailsInAscendingOrder();
 			System.out.println("Details In increasing item_price fethced");	
 			
 		} catch (ClassNotFoundException |SQLException e) {
@@ -137,7 +137,7 @@ public class Tester {
        
         try {
 			amazonService.validateGetMaxPriceOrderItem();
-			System.out.println("Details In increasing item_price fethced");	
+			System.out.println("Details of max price is fetched");	
 			
 		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
@@ -146,11 +146,30 @@ public class Tester {
 		
 		AmazonService amMaxs = new AmazonServiceImpl();
 		
-		List<Float> amazonDTOMax=   amMaxs.validateGetMaxPriceOrderItem();
+		List<Float> amazonMax=   amMaxs.validateGetMaxPriceOrderItem();
          
-        for(Float amazonsDTO :amazonDTOMax){
-           if(amazonsDTO!=null){
-                System.out.println(amazonsDTO);
+        for(Float amazonsM :amazonMax){
+           if(amazonsM!=null){
+                System.out.println(amazonsM);
+           }
+        }
+        
+        try {
+			amazonService.validateGetAveragePriceOrderItem();
+			System.out.println("Details of average price is fetched");	
+			
+		} catch (ClassNotFoundException |SQLException e) {
+			e.printStackTrace();
+			
+			}
+		
+		AmazonService amAvgs = new AmazonServiceImpl();
+		
+		List<Float> amazonAvg=   amAvgs.validateGetAveragePriceOrderItem();
+         
+        for(Float amazonsA :amazonAvg){
+           if(amazonsA!=null){
+                System.out.println(amazonsA);
            }
         }
 	

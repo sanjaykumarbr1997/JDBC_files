@@ -159,18 +159,37 @@ Connection connection = null;
 	public List<Float> getMaxPriceOrderItem() throws ClassNotFoundException, SQLException {
 		Statement statement = getConnection().createStatement();
 		ResultSet resultSet=statement.executeQuery(SELECT_QUERY_MAX);
-		List<Float> amazonDTOs = new ArrayList<>();
+		List<Float> amazonMax = new ArrayList<>();
 		
 		while (resultSet.next()) {
 
             Float value;
-            value=resultSet.getFloat("item_price");
-            amazonDTOs.add(value);
+            value=resultSet.getFloat(1);
+            amazonMax.add(value);
 		}
 		
 		statement.close();
 		closeConnection();
-		return amazonDTOs;	
+		return amazonMax;	
+	}
+
+	@Override
+	public List<Float> getAveragePriceOrderItem() throws ClassNotFoundException, SQLException {
+		Statement statement = getConnection().createStatement();
+		ResultSet resultSet=statement.executeQuery(SELECT_QUERY_AVERAGE);
+		List<Float> amazonAvg = new ArrayList<>();
+		
+		while (resultSet.next()) {
+
+            Float value;
+            value=resultSet.getFloat(1);
+            amazonAvg.add(value);
+		}
+		
+		statement.close();
+		closeConnection();
+		return amazonAvg;	
+		
 	}
 
 }

@@ -10,5 +10,5 @@ public class Constants {
 	public static final String SELECT_QUERY = "select * from amazon_order";
 	public static final String SELECT_QUERY_IN_INCREASED_ITEM_PRICE = "SELECT *FROM amazon_order order by item_price;";
 	public static final String SELECT_QUERY_MAX ="SELECT MAX(ITEM_PRICE) FROM amazon_order;";
-
+	public static final String SELECT_QUERY_AVERAGE ="SELECT AVG(ITEM_PRICE) FROM amazon_order;";
 }

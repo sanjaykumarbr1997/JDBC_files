@@ -11,6 +11,9 @@ public interface PlayStoreService {
 	public void validateAndUpdateRatingsByName(int ratings,String appName) throws ClassNotFoundException, SQLException;
 	public void deleteDetailsByName(String appName) throws ClassNotFoundException, SQLException;
 	public List<PlayStoreDTO> validateAndFetch() throws ClassNotFoundException, SQLException;
+	public List<Integer> validateGetMaxRatings() throws ClassNotFoundException,SQLException;
+	public List<PlayStoreDTO> validateGetAppsByRatings(int rating) throws ClassNotFoundException,SQLException;
+	public List<PlayStoreDTO> validateGetAppsByType(String type) throws ClassNotFoundException,SQLException;
 	
-
+	
 }

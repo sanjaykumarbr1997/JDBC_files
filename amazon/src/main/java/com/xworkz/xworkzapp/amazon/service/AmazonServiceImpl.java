@@ -72,4 +72,10 @@ public class AmazonServiceImpl implements AmazonService{
 		return amazonDAO.getMaxPriceOrderItem();
 	}
 
+
+	@Override
+	public List<Float> validateGetAveragePriceOrderItem() throws ClassNotFoundException, SQLException {
+		return amazonDAO.getAveragePriceOrderItem();
+	}
+
 }

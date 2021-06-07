@@ -14,4 +14,5 @@ public interface AmazonDAO {
 	public List<AmazonDTO> getAllOrderDetails() throws ClassNotFoundException,SQLException;
 	public List<AmazonDTO> getOrderDetailsInAscendingOrder() throws ClassNotFoundException,SQLException; 
 	public List<Float> getMaxPriceOrderItem() throws ClassNotFoundException,SQLException;
+	public List<Float> getAveragePriceOrderItem() throws ClassNotFoundException,SQLException;
 }

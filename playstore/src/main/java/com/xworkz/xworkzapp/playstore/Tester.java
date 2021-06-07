@@ -52,7 +52,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 
 	
 		
-		PlayStoreService PlayStoreService = new PlayStoreServiceImpl();
+		PlayStoreService playStoreService = new PlayStoreServiceImpl();
 		System.out.println("Enter number of records to update");
 		
 		int numberOfRecordsUpdate = scanner.nextInt();
@@ -65,7 +65,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 			int ratings = scanner.nextInt();
 		
 			try {
-			PlayStoreService.validateAndUpdateRatingsByName(ratings,name);
+			playStoreService.validateAndUpdateRatingsByName(ratings,name);
 			System.out.println("Ratings  updated");
 			
 			} catch (ClassNotFoundException |SQLException e) {
@@ -86,7 +86,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 			String name = scanner.next();
 
 			try {
-			PlayStoreService.deleteDetailsByName(name);
+			playStoreService.deleteDetailsByName(name);
 			System.out.println("Details deleted");
 			
 			} catch (ClassNotFoundException |SQLException e) {
@@ -97,7 +97,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 			
 		}
 		try {
-			PlayStoreService.validateAndFetch();
+			playStoreService.validateAndFetch();
 			System.out.println("Details fethced");
 			
 			
@@ -106,10 +106,6 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 			e.printStackTrace();
 			
 			}
-		
-		scanner.close();
-		
-		
 		PlayStoreService psStore = new PlayStoreServiceImpl();
 		
 		List<PlayStoreDTO> playDTOs=  psStore.validateAndFetch();
@@ -124,8 +120,66 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
         }
         
         
+        try {
+			playStoreService.validateGetMaxRatings();
+			System.out.println("Maximum rating is :");
+			
+			
+			
+		} catch (ClassNotFoundException |SQLException e) {
+			e.printStackTrace();
+			
+			}
+		PlayStoreService psSt = new PlayStoreServiceImpl();
+		
+		List<Integer> maxs=  psSt.validateGetMaxRatings();
+        
+        System.out.println("--------");
+
+       
+        for(Integer max :maxs){
+           if( max!=null){
+                System.out.println( max);
+           }
+        }
         
         
+        System.out.println("Enter rating to find apps");
+        int ratings = scanner.nextInt();
+        try {
+        PlayStoreService psStoreDTO = new PlayStoreServiceImpl();
+		
+        List<PlayStoreDTO> playsDTOs=  psStoreDTO.validateGetAppsByRatings(ratings);
+
+       
+        for(PlayStoreDTO pDTO :playsDTOs){
+            if(pDTO!=null){
+                 System.out.println(pDTO);
+            }
+         }
+        }catch (ClassNotFoundException |SQLException e){
+        	e.printStackTrace();
+        }
+        
+        
+        
+        
+        System.out.println("Enter type to find apps");
+        String type = scanner.next();
+        try {
+        PlayStoreService psStoreDTO = new PlayStoreServiceImpl();
+		
+        List<PlayStoreDTO> playsDTOs=  psStoreDTO.validateGetAppsByType(type);
+        for(PlayStoreDTO pDTO :playsDTOs){
+            if(pDTO!=null){
+                 System.out.println(pDTO);
+            }
+         }
+        }catch (ClassNotFoundException |SQLException e){
+        	e.printStackTrace();
+        }
+        
+        scanner.close();  
 		
 	}
 
