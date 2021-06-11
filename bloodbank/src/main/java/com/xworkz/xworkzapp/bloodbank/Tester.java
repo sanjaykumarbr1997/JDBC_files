@@ -10,6 +10,8 @@ import com.xworkz.xworkzapp.bloodbank.service.BloodBankService;
 import com.xworkz.xworkzapp.bloodbank.service.BloodBankServiceImpl;
 
 public class Tester {
+	
+	
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
@@ -128,11 +130,11 @@ public class Tester {
         	
         	
         try {
-        	List<String> smoker=bloodS.validateAndgetIsSmokerByName(name);
+        	List<Boolean> smoker=bloodS.validateAndgetIsSmokerByName(name);
 			System.out.println(" Is smoker  fetched");
-			for(String ism :smoker){
+			for(Boolean ism :smoker){
 	            if(ism!=null){
-	                 System.out.println(ism.toString());
+	                 System.out.println(ism);
 	            }
 	         }
 			
@@ -182,10 +184,6 @@ public class Tester {
 			
 			}
            
-        
-        
-        
-        
         
         
         scanner.close();

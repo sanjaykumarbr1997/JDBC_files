@@ -12,7 +12,7 @@ public interface BloodBankDAO {
 	public void updateAgeByName(int donorAge,String donorName) throws ClassNotFoundException ,SQLException;
 	public void deleteDetailsByName(String donorName) throws ClassNotFoundException ,SQLException;
 	public List<BloodBankDTO> getAllBloodBankDetails() throws ClassNotFoundException,SQLException;
-	List<String> getIsSmokerByName(String name) throws ClassNotFoundException, SQLException;
+	List<Boolean> getIsSmokerByName(String name) throws ClassNotFoundException, SQLException;
 	public List<BloodBankDTO> getDetailsByLocation(String location) throws ClassNotFoundException,SQLException;
 	public List<String> getAllContactNumber() throws ClassNotFoundException, SQLException;
 	

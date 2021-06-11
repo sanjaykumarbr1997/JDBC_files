@@ -140,10 +140,10 @@ public class BloodBankDAOImpl implements BloodBankDAO {
 	}
 	
 	@Override
-	public List<String> getIsSmokerByName(String name) throws ClassNotFoundException, SQLException {
+	public List<Boolean> getIsSmokerByName(String name) throws ClassNotFoundException, SQLException {
 
 		PreparedStatement preparedstatement4 = null;
-		 List<String> issmoke = new ArrayList<>();
+		 List<Boolean> issmoke = new ArrayList<>();
 
         try {
            
@@ -152,7 +152,7 @@ public class BloodBankDAOImpl implements BloodBankDAO {
             ResultSet resultSet = preparedstatement4.executeQuery();
            
             while (resultSet.next()) {
-            issmoke.add(resultSet.getString("is_smoker"));
+            issmoke.add(resultSet.getBoolean(1));
            
             }
 

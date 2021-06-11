@@ -63,7 +63,7 @@ public class BloodBankServiceImpl implements BloodBankService {
 	}
 
 	@Override
-	public List<String> validateAndgetIsSmokerByName(String name) throws ClassNotFoundException, SQLException {
+	public List<Boolean> validateAndgetIsSmokerByName(String name) throws ClassNotFoundException, SQLException {
 		return bankDAO.getIsSmokerByName(name);
 	}
 

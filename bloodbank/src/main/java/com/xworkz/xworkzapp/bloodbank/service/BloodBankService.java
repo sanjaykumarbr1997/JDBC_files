@@ -11,7 +11,7 @@ public interface BloodBankService {
 	public void validateAndUpdateAgeByName(int donorAge,String donorName) throws ClassNotFoundException, SQLException;
 	public void validateDeleteDetailsByName(String donorName) throws ClassNotFoundException, SQLException;
 	public List<BloodBankDTO> validateAndFetch() throws ClassNotFoundException, SQLException;
-	List<String> validateAndgetIsSmokerByName(String name) throws ClassNotFoundException, SQLException;
+	List<Boolean> validateAndgetIsSmokerByName(String name) throws ClassNotFoundException, SQLException;
 	public List<BloodBankDTO> validateGetDetailsByLocation(String location) throws ClassNotFoundException,SQLException;
 	public List<String> validateGetAllContactNumber() throws ClassNotFoundException, SQLException;
 }
