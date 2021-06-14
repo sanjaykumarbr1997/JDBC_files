@@ -119,6 +119,7 @@ public class BloodBankDAOImpl implements BloodBankDAO {
 	public List<BloodBankDTO> getAllBloodBankDetails() throws ClassNotFoundException, SQLException  {
 		
 			Statement statement = getConnection().createStatement();
+			//use execute Query instead of executeUpdate
 			ResultSet resultSet=statement.executeQuery(SELECT_QUERY);
 			List<BloodBankDTO> bankDTOs = new ArrayList<>();
 			
